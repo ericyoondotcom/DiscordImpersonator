@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import os
-import json
+import asyncio
 import markovify
 from config import *
 
@@ -50,6 +50,7 @@ async def download(ctx):
             async for msg in channel.history(limit=None): # TODO: limit=None does not work
                 content = msg.clean_content.replace("\n", " ")
                 file.write(f"{msg.author.id}\t{content}\n")
+                await asyncio.sleep(0.03)
     await ctx.send("All done!")
 
 @bot.command()
