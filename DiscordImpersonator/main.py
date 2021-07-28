@@ -53,14 +53,6 @@ async def download(ctx):
     await ctx.send("All done!")
 
 @bot.command()
-@commands.has_permissions(administrator=True)
-async def train(ctx):
-    for user_id in USERS:
-        await ctx.send(f"Generating model for {str(user_id)}...")
-        train_model(user_id)
-        await ctx.send("All done!")
-
-@bot.command()
 async def run(ctx, *, member:discord.Member):
     if not member.id in model_cache:
         if not load_model_from_file(member.id):
