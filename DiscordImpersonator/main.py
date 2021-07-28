@@ -10,6 +10,16 @@ filedir = os.path.dirname(os.path.realpath(__file__))
 bot = commands.Bot(command_prefix="sus ", case_insensitive=True, max_messages=5000)
 model_cache = {}
 
+
+def ensure_directory(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+# Ensure directories exist
+ensure_directory(os.path.join(filedir, "data"))
+ensure_directory(os.path.join(filedir, "data", "models"))
+ensure_directory(os.path.join(filedir, "data", "channels"))
+
 def load_model_from_file(user_id):
     path = os.path.join(filedir, "data", "models", str(user_id))
     if not os.path.exists(path):
