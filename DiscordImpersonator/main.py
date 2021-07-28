@@ -57,7 +57,7 @@ async def download(ctx):
         await ctx.send(f"Downloading channel {str(channel_id)}...")
         channel = bot.get_channel(channel_id)
         with open(os.path.join(filedir, "data", "channels", str(channel_id)), "w") as file:
-            async for msg in channel.history(limit=None): # TODO: limit=None does not work
+            async for msg in channel.history(limit=None):
                 content = msg.clean_content.replace("\n", " ")
                 file.write(f"{msg.author.id}\t{content}\n")
                 await asyncio.sleep(0.03)
